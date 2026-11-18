@@ -8,7 +8,7 @@ package pong;
  * Si vince un livello vincendo una partita; perdendo una partita si perde una vita.
  */
 public class Livelli {
-     private int vite;
+    private int vite;
     private final int numeroLivelli;
     private final Lato umano;
     private int livello = 1;
@@ -115,6 +115,8 @@ public class Livelli {
      *           ma mai più delle vite iniziali: con tutte le vite, non cambia niente. Il livello non cambia.
      */
     public void guadagnaVita() {
-        throw new UnsupportedOperationException("da scrivere");
+        if(!isFinito() && this.viteCorrenti < this.vite){
+            this.viteCorrenti++;
+        }
     }
 }

@@ -10,28 +10,40 @@ import geometria.Rettangolo;
  * La palla non la vede: ci passa attraverso.
  */
 public class Stella {
+    private Rettangolo area;
+    private int durata;
+    private boolean visibile;
+    private int fotogrammiTrascorsi;
+    private boolean raccolta;
     /**
      * Una stella nuova, visibile, nell'area data, che resta visibile per durata fotogrammi
      * (60 fotogrammi sono un secondo).
      * Lancia IllegalArgumentException se area è null o se durata è minore di 1.
      */
     public Stella(Rettangolo area, int durata) {
-        throw new UnsupportedOperationException("da scrivere");
+        if(area == null || durata < 1){
+            throw new IllegalArgumentException();
+        }
+        this.area = area;
+        this.durata = durata;
+        this.visibile = true;
+        this.fotogrammiTrascorsi = 0;
+        this.raccolta = false;
     }
 
     /** Dove sta la stella. Promette: non è null e non cambia mai. */
     public Rettangolo getArea() {
-        throw new UnsupportedOperationException("da scrivere");
+        return this.area;
     }
 
     /** Vero se si vede: non è stata raccolta e il suo tempo non è finito. */
     public boolean isVisibile() {
-        throw new UnsupportedOperationException("da scrivere");
+        return this.visibile;
     }
 
     /** Vero se è stata raccolta. */
     public boolean isRaccolta() {
-        throw new UnsupportedOperationException("da scrivere");
+        return this.raccolta;
     }
 
     /**
@@ -39,7 +51,13 @@ public class Stella {
      * su una stella raccolta o sparita non cambia niente.
      */
     public void avanza() {
-        throw new UnsupportedOperationException("da scrivere");
+        if(isVisibile()){
+            this.fotogrammiTrascorsi ++;
+
+            if(this.fotogrammiTrascorsi >= this.durata){
+                this.visibile = false;
+            }
+        }
     }
 
     /**
@@ -48,6 +66,10 @@ public class Stella {
      * Lancia IllegalStateException se la stella non è visibile (già raccolta, o sparita), e non cambia niente.
      */
     public void raccogli() {
-        throw new UnsupportedOperationException("da scrivere");
+        if(!isVisibile()){
+            throw new IllegalStateException();
+        }
+        this.raccolta = true;
+        this.visibile = false;
     }
 }

@@ -6,13 +6,19 @@ package stelle;
 public class Raccolta {
     /** Nel gioco: cinque stelle per una vita. */
     public static final int STELLE_PER_UNA_VITA = 5;
+    private int stellePerUnaVita;
+    private int stelleAttuali;
 
     /**
      * Un conto nuovo, a zero.
      * Lancia IllegalArgumentException se stellePerUnaVita è minore di 1.
      */
     public Raccolta(int stellePerUnaVita) {
-        throw new UnsupportedOperationException("da scrivere");
+        if(stellePerUnaVita < 1){
+            throw new IllegalArgumentException();
+        }
+        this.stellePerUnaVita = stellePerUnaVita;
+        this.stelleAttuali = 0;
     }
 
     /**
@@ -21,11 +27,18 @@ public class Raccolta {
      *           Altrimenti falso, e il conto cresce di 1.
      */
     public boolean aggiungi() {
-        throw new UnsupportedOperationException("da scrivere");
+        if((stelleAttuali + 1) == this.stellePerUnaVita){
+            stelleAttuali = 0;
+            return true;
+        }
+        else{
+            stelleAttuali ++;
+            return false;
+        }
     }
 
     /** Le stelle raccolte dall'ultima vita guadagnata. Promette: fra 0 e stellePerUnaVita - 1. */
     public int getStelle() {
-        throw new UnsupportedOperationException("da scrivere");
+        return stelleAttuali;
     }
 }
